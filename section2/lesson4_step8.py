@@ -28,14 +28,13 @@ try:
     browser.find_element(By.ID, 'answer').send_keys(y)
     browser.find_element(By.CSS_SELECTOR, "button.btn[id='solve']").click()
 
-
     # Получение числа из алерта
     alert = browser.switch_to.alert
     alert_text = alert.text
     print(alert_text[alert_text.index(':') + 2:])
     alert.accept()
 
-    #assert "successful" in message.text
+    # assert "successful" in message.text
 
 # except Exception as e:
 #     print('\033[91m' + str(e)[:str(e).index('\n')])
