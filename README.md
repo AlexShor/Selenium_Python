@@ -1,4 +1,4 @@
-# <img class="course-nav__cover" src="https://stepik.org/media/cache/images/courses/575/cover_3kqh9Iw/d1a44446e98638349c7416e78814f122.png" alt="Course cover" height="56" width="56"> Автоматизация тестирования с помощью Selenium и Python
+# <img class="course-nav__cover" src="https://stepik.org/media/cache/images/courses/575/cover_3kqh9Iw/d1a44446e98638349c7416e78814f122.png" alt="Course cover" height="40" width="40"> Автоматизация тестирования с помощью Selenium и Python
 
 ## About the course
 Мы сделали этот курс, так как любим пользоваться качественными стабильными сервисами с удобными интерфейсами и продуманным UX дизайном, и хотим, чтобы благодаря вам и нам таких сервисов становилось больше.
