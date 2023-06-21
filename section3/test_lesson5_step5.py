@@ -5,17 +5,6 @@ from selenium.webdriver.common.by import By
 link = "http://selenium1py.pythonanywhere.com/"
 
 
-@pytest.fixture(scope="function")
-def browser():
-    print("\nstart browser for test..")
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    browser = webdriver.Chrome()
-    yield browser
-    print("\nquit browser..")
-    browser.quit()
-
-
 class TestMainPage1():
 
     def test_guest_should_see_login_link(self, browser):
