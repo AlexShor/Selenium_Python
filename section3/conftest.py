@@ -1,5 +1,7 @@
 import pytest
+import os
 from selenium import webdriver
+from dotenv import load_dotenv
 
 
 @pytest.fixture(scope="class")
@@ -16,7 +18,10 @@ def browser():
 
 @pytest.fixture(scope="class")
 def credentials():
-    return {'email': 'lex.shor@gmail.com', 'password': 'NM-@XeYfGrgNmP8'}
+    load_dotenv()
+    EMAIL = os.getenv('EMAIL')
+    PASSWORD = os.getenv('PASSWORD')
+    return {'email': EMAIL, 'password': PASSWORD}
 
 
 @pytest.fixture(scope="class")
