@@ -4,20 +4,31 @@ from selenium import webdriver
 from dotenv import load_dotenv
 
 
-# @pytest.fixture(scope="module")
-def links():
-    lessons = ['236895', '236896', '236897', '236898', '236899', '236903', '236904', '236905']
-    # lessons = ['236895', '236896']
-    list_links = [f"https://stepik.org/lesson/{lesson_id}/step/1" for lesson_id in lessons]
-    return list_links
+def pytest_addoption(parser):
+    parser.addoption('--browser_name', action='store', default="chrome",
+                     help="Choose browser: chrome or firefox")
+    parser.addoption('--language', action='store', default="en",
+                     help="Choose browser language")
 
 
 @pytest.fixture(scope="function")
-def browser():
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    browser = webdriver.Chrome(options=options)
-    browser.implicitly_wait(20)
+def browser(request):
+    browser_name = request.config.getoption("browser_name")
+    user_language = request.config.getoption("language")
+    if browser_name == "chrome":
+        print("[CHROME]", end=' ')
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+        browser = webdriver.Chrome(options=options)
+        browser.implicitly_wait(20)
+    elif browser_name == "firefox":
+        print("[FIREFOX]", end=' ')
+        options = webdriver.FirefoxOptions()
+        options.set_preference("intl.accept_languages", user_language)
+        browser = webdriver.Firefox(options=options)
+    else:
+        raise pytest.UsageError("--browser_name should be chrome or firefox")
     yield browser
     browser.quit()
 
